@@ -15,6 +15,10 @@
   --color-l3: #ccdcd8;
   --color-d-hsl: 173, 14%, 12%;
   --color-d1: hsl(var(--color-d-hsl));
+  --color-valid-hsl: 174, 24%, 40%;
+  --color-valid: hsl(var(--color-valid-hsl));
+  --color-invalid-hsl: 354, 42%, 56%;
+  --color-invalid: hsl(var(--color-invalid-hsl));
 
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --shadow-lg: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -110,7 +114,7 @@ a {
 
   .login-link {
     text-decoration: none;
-    color: var(--color-pri-l1);
+    color: var(--color-pri-d1);
     font-weight: 600;
   }
 }
@@ -167,6 +171,20 @@ a {
 
     &:focus {
       outline: 2px solid var(--color-sec);
+
+      &:required:invalid:not(:placeholder-shown) {
+        outline-color: var(--color-invalid);
+        background-color: hsla(var(--color-invalid-hsl), 0.25);
+      }
+
+      &:required:valid:not(:placeholder-shown) {
+        outline-color: var(--color-valid);
+        background-color: hsla(var(--color-valid-hsl), 0.25);
+      }
+    }
+
+    &:required:invalid:not(:placeholder-shown) {
+      outline: 2px solid var(--color-invalid);
     }
   }
 }
