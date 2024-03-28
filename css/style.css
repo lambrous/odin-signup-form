@@ -17,7 +17,7 @@
   --color-d1: hsl(var(--color-d-hsl));
   --color-valid-hsl: 174, 24%, 40%;
   --color-valid: hsl(var(--color-valid-hsl));
-  --color-invalid-hsl: 354, 42%, 56%;
+  --color-invalid-hsl: 343, 76%, 50%;
   --color-invalid: hsl(var(--color-invalid-hsl));
 
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -157,6 +157,7 @@ a {
     color: var(--color-l1);
     padding: 0.75em 2.5em;
     box-shadow: var(--shadow);
+    transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
 
     &:hover {
       background-color: var(--color-pri-d1);
@@ -168,6 +169,10 @@ a {
     border: 1px solid var(--color-l3);
     border-radius: 0.2em;
     padding-inline: 0.5em;
+    outline: 2px solid transparent;
+    transition-property: outline, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 
     &:focus {
       outline: 2px solid var(--color-sec);
@@ -183,8 +188,19 @@ a {
       }
     }
 
-    &:required:invalid:not(:placeholder-shown) {
+    &:required:invalid:not(:placeholder-shown),
+    &.invalid {
       outline: 2px solid var(--color-invalid);
     }
   }
+
+  .password-match {
+    color: var(--color-invalid);
+    font-size: 0.7rem;
+    position: absolute;
+  }
+}
+
+.hidden {
+  visibility: hidden;
 }
